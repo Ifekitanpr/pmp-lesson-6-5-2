@@ -141,7 +141,7 @@ const quizzes = [
   },
 ];
 
-function Modal({ d, close, done }) {
+function Modal({ d, close, onComplete }) {
   const [step, setStep] = useState(0);
   useEffect(() => {
     const esc = (e) => e.key === "Escape" && close();
@@ -181,7 +181,7 @@ function Modal({ d, close, done }) {
           <button
             className="modal-action"
             onClick={() => {
-              done();
+              if (onComplete) onComplete();
               close();
             }}
           >
@@ -221,7 +221,7 @@ function Quiz({ d, finish }) {
               {p === d.c ? d.g : d.b}
             </p>
             <button className="finish-check" onClick={finish}>
-              Finish check <ArrowRight size={18} />
+              Finish check & unlock next screen <ArrowRight size={18} />
             </button>
           </>
         )}
@@ -238,6 +238,7 @@ function App() {
   const [quiz, setQuiz] = useState(null);
   const [sound, setSound] = useState(true);
   const [stageRead, setStageRead] = useState(Array(5).fill(false));
+  const [ruleReviewed, setRuleReviewed] = useState(false);
   const [engineRead, setEngineRead] = useState(Array(2).fill(false));
 
   useLessonAudio(sound);
@@ -256,8 +257,8 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">SCREEN 1 — HOOK</p>
-          <h1>Lesson 6.5.2 — Help Ensure Continuous Improvement Processes Are Updated</h1>
+          <p className="eyebrow">Lesson 6.5.2 — Help Ensure Continuous Improvement Processes Are Updated</p>
+          <h1>Every January, people write down a list of ten resolutions.</h1>
           <p className="lead">
             Every January, people write down a list of ten resolutions. By February, none of them stick. But the person who picks just one resolution — small, specific, and scheduled — is usually still doing it in June.
           </p>
@@ -278,7 +279,6 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">SCREEN 2 — THE RETROSPECTIVE: IMPROVEMENT'S HEARTBEAT</p>
           <h2>The Retrospective: Improvement's Heartbeat</h2>
           <p className="lead">
             On adaptive tracks, one institution makes improvement inevitable rather than aspirational.
@@ -299,7 +299,6 @@ function App() {
   if (s === 2)
     c = (
       <div className="wide-page">
-        <p className="eyebrow">SCREEN 3 — THE FIVE-STAGE STRUCTURE</p>
         <h2>The Five-Stage Structure</h2>
         <p className="lead">
           A retrospective isn't just "let's talk about how it went." A five-stage structure keeps it honest. Click each to explore.
@@ -341,26 +340,25 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">SCREEN 4 — THE ONE-IMPROVEMENT RULE AND THE IMPROVEMENT BACKLOG</p>
           <h2>The One-Improvement Rule and the Improvement Backlog</h2>
           <p className="lead">
             Back to that resolutions list one more time — because this is exactly the discipline that separates a team that retrospects from a team that actually improves.
           </p>
           <button
             className="primary-cta"
-            disabled={done[3]}
             onClick={() => setModal("rule")}
           >
-            {done[3] ? "Rule reviewed — ready for check" : "Click to Reveal: The One-Improvement Rule"}{" "}
+            {ruleReviewed ? "Rule reviewed" : "Click to Reveal: The One-Improvement Rule"}{" "}
             <ArrowRight size={18} />
           </button>
-          {done[3] && (
+          {ruleReviewed && (
             <button
               className="knowledge-cta"
               style={{ marginTop: 14 }}
               onClick={() => setQuiz(0)}
             >
-              <Target size={18} /> Micro Knowledge Check <ArrowRight size={18} />
+              <Target size={18} /> {done[3] ? "Retake Micro Knowledge Check" : "Start Micro Knowledge Check (Required to Continue)"}{" "}
+              <ArrowRight size={18} />
             </button>
           )}
         </div>
@@ -371,7 +369,6 @@ function App() {
   if (s === 4)
     c = (
       <div className="wide-page">
-        <p className="eyebrow">SCREEN 5 — PREDICTIVE-SIDE ENGINES: PROCESS AUDITS AND PDCA</p>
         <h2>Predictive-Side Engines: Process Audits and PDCA</h2>
         <p className="lead">
           Outside sprint cadences, the same muscle exists in different clothes. Click each engine to explore.
@@ -413,18 +410,10 @@ function App() {
             </div>
             <button
               className="knowledge-cta centered"
-              disabled={done[4]}
               onClick={() => setQuiz(1)}
             >
-              {done[4] ? (
-                <>
-                  <Check size={18} /> Micro Knowledge Check completed
-                </>
-              ) : (
-                <>
-                  <Target size={18} /> Micro Knowledge Check <ArrowRight size={18} />
-                </>
-              )}
+              <Target size={18} /> {done[4] ? "Retake Micro Knowledge Check" : "Start Micro Knowledge Check (Required to Continue)"}{" "}
+              <ArrowRight size={18} />
             </button>
           </>
         )}
@@ -434,7 +423,6 @@ function App() {
   if (s === 5)
     c = (
       <div className="exam-layout">
-        <p className="eyebrow">SCREEN 6 — SYNTHESIS (EXAM LENS)</p>
         <h2>Synthesis (Exam Lens)</h2>
         <div className="exam-two-col">
           <div>
@@ -511,7 +499,7 @@ function App() {
             <div className="lesson-content">{c}</div>
             {done[s] && (
               <p className="completion">
-                <Check size={16} /> Interaction complete — continue when ready.
+                <Check size={16} /> Section complete — continue when ready.
               </p>
             )}
             <footer className="nav-footer">
@@ -537,8 +525,11 @@ function App() {
         <Modal
           d={typeof modal === "string" ? reveals[modal] : modal}
           close={() => setModal(null)}
-          done={() => {
-            if (typeof modal === "string") mark();
+          onComplete={() => {
+            if (modal === "hook") mark(0);
+            if (modal === "retro") mark(1);
+            if (modal === "rule") setRuleReviewed(true);
+            if (modal === "exam") mark(5);
           }}
         />
       )}
