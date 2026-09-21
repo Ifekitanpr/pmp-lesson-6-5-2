@@ -4,21 +4,18 @@ import { createPortal } from "react-dom";
 import {
   ArrowLeft,
   ArrowRight,
-  Award,
   Check,
-  ChevronDown,
-  Target,
   Volume2,
   VolumeX,
   X,
-  ShieldCheck,
-  BarChart2,
+  Target,
+  Shield,
+  BarChart3,
   Lightbulb,
-  CheckCircle2,
-  CalendarCheck,
+  CheckSquare,
+  Calendar,
   Search,
   RefreshCw,
-  Sparkles,
 } from "lucide-react";
 import { useLessonAudio } from "../../shared/useLessonAudio";
 import "./styles.css";
@@ -31,73 +28,32 @@ const illustrationFiles = import.meta.glob("./assets/illustrations/*.png", {
 const img = (n) => illustrationFiles[`./assets/illustrations/${n}.png`];
 
 const tabs = [
-  "Resolutions trap",
-  "Heartbeat rhythm",
-  "Five stages",
+  "New Year's resolutions",
+  "Retrospective heartbeat",
+  "Five-stage structure",
   "One-improvement rule",
-  "Predictive engines",
+  "Predictive engines & PDCA",
   "Exam lens",
-];
-
-const stages = [
-  [
-    "1. Set the Stage",
-    "Psychological safety made explicit — the prime directive that everyone did the best they could with what they knew. This is the psychological safety deposit paying its dividend.",
-    "stage-set-the-stage",
-  ],
-  [
-    "2. Gather Data",
-    "What actually happened — metrics before memories: blocked-days, escape counts, cycle times, plus the human reading of how it felt.",
-    "stage-gather-data",
-  ],
-  [
-    "3. Generate Insight",
-    "Making sense of the data together — what it actually means, not just what it shows.",
-    "stage-generate-insight",
-  ],
-  [
-    "4. Decide",
-    "Pick ONE improvement — owned, sized, testable. Not a wish list.",
-    "stage-decide",
-  ],
-  [
-    "5. Close",
-    "Commit it into the next cycle's capacity, visibly. Not just discussed — scheduled.",
-    "stage-close",
-  ],
-];
-
-const engines = [
-  [
-    "Process Audits & Quality Reviews",
-    "Cousins of the risk audit, these examine whether the project's processes are followed and effective — and their findings are improvement fuel, not policing. An owner-update SLA, trigger quantification, and fallback drafting can all be process improvements delivered by an audit, not just a compliance checklist.",
-    "engine-process-audits",
-  ],
-  [
-    "PDCA — The Universal Engine",
-    "Plan a small change as a hypothesis with a measure. Do it small and reversible. Check the measure against baseline — measured, not felt. Act: adopt and standardize the win (routing it into the organizational process assets pipeline), adjust, or abandon without embarrassment.",
-    "engine-pdca-wheel",
-  ],
 ];
 
 const reveals = {
   hook: {
-    title: "The Improvement Machinery",
-    text: "Every January, people write down a list of ten resolutions. By February, none of them stick. But the person who picks just one resolution — small, specific, and scheduled — is usually still doing it in June. Improvement works the same way in a project. Enabler 6.2's wording is precise: help ensure improvement processes are updated — the improvement machinery itself has to get improved, on a rhythm, not left to good intentions.",
+    title: "Lesson 6.5.2 — Help Ensure Continuous Improvement Processes Are Updated",
+    text: "Improvement works the same way in a project. Enabler 6.2's wording is precise: help ensure improvement processes are updated — the improvement machinery itself has to get improved, on a rhythm, not left to good intentions.",
     image: "hook-resolutions",
   },
   retro: {
-    title: "Examining the Way of Working",
-    text: "The retrospective is a recurring, time-boxed, whole-team session held at each cadence boundary, examining the way of working — not the product, which is the review's job. It's the heartbeat that keeps improvement from becoming a once-in-a-while good intention that gets abandoned under pressure.",
+    title: "The Retrospective: Improvement's Heartbeat",
+    text: "The retrospective is a recurring, time-boxed, whole-team session held at each cadence boundary, examining the way of working — not the product, which is the review's job. It's the heartbeat that keeps improvement from becoming a once-in-a-while good intention.",
     image: "retrospective-heartbeat",
   },
   rule: {
-    title: "One Owned Item Ships; Nine Intentions Fade",
+    title: "The One-Improvement Rule and the Improvement Backlog",
     text: "A list of nine intentions survives contact with Monday for about an hour; one owned, scheduled item ships. That's the one-improvement rule. Improvements then queue in an improvement backlog — prioritized, statused, and reviewed like any other backlog — because improvement unmanaged is improvement abandoned. The improvement doesn't get to just live in someone's memory of a good meeting; it has to live somewhere trackable.",
     image: "one-improvement-backlog",
   },
   exam: {
-    title: "Building the Machinery That Makes Improvement Inevitable",
+    title: "Synthesis (Exam Lens)",
     text: "The retrospective is improvement's heartbeat on adaptive tracks: a recurring, whole-team session with a five-stage structure — set the stage, gather data, generate insight, decide on one improvement, and close it into the next cycle's capacity. The one-improvement rule is what separates teams that retrospect from teams that improve, and the improvement backlog keeps commitments tracked rather than forgotten. On predictive tracks, process audits and PDCA do the same work in different clothes — small, measured, reversible experiments, adopted, adjusted, or abandoned honestly. And enabler 6.2's deeper point is that the improvement machinery itself needs improving, not just the project it serves.",
     image: "exam-continuous-improvement",
     bullets: [
@@ -105,14 +61,62 @@ const reveals = {
       "The one-improvement rule: one owned, sized, scheduled item beats a list of good intentions",
       "Improvements live in a tracked improvement backlog — unmanaged improvement is abandoned improvement",
       "PDCA: plan a small measured hypothesis, do it small and reversible, check against baseline, act by adopting, adjusting, or abandoning without embarrassment",
-      "Enabler 6.2's meta-level: the improvement processes themselves must be updated over time, not just blindly applied",
+      "Enabler 6.2's meta-level: the improvement processes themselves must be updated over time, not just applied",
     ],
   },
 };
 
+const stages = [
+  {
+    title: "1. Set the Stage",
+    text: "Psychological safety made explicit — the prime directive that everyone did the best they could with what they knew. This is the psychological safety deposit paying its dividend.",
+    image: "stage-set-the-stage",
+    icon: Shield,
+  },
+  {
+    title: "2. Gather Data",
+    text: "What actually happened — metrics before memories: blocked-days, escape counts, cycle times, plus the human reading of how it felt.",
+    image: "stage-gather-data",
+    icon: BarChart3,
+  },
+  {
+    title: "3. Generate Insight",
+    text: "Making sense of the data together — what it actually means, not just what it shows.",
+    image: "stage-generate-insight",
+    icon: Lightbulb,
+  },
+  {
+    title: "4. Decide",
+    text: "Pick ONE improvement — owned, sized, testable. Not a wish list.",
+    image: "stage-decide",
+    icon: CheckSquare,
+  },
+  {
+    title: "5. Close",
+    text: "Commit it into the next cycle's capacity, visibly. Not just discussed — scheduled.",
+    image: "stage-close",
+    icon: Calendar,
+  },
+];
+
+const engines = [
+  {
+    title: "1. Process Audits and Quality Reviews",
+    text: "Cousins of the risk audit, these examine whether the project's processes are followed and effective — and their findings are improvement fuel, not policing. An owner-update SLA, trigger quantification, and fallback drafting can all be process improvements delivered by an audit, not just a compliance checklist.",
+    image: "engine-process-audits",
+    icon: Search,
+  },
+  {
+    title: "2. PDCA — The Universal Engine",
+    text: "Plan a small change as a hypothesis with a measure. Do it small and reversible. Check the measure against baseline — measured, not felt. Act: adopt and standardize the win (routing it into the organizational process assets pipeline), adjust, or abandon without embarrassment.",
+    image: "engine-pdca-wheel",
+    icon: RefreshCw,
+  },
+];
+
 const quizzes = [
   {
-    q: "At the end of a retrospective, a team generates a list of nine potential improvements they'd like to make. All nine are written on a whiteboard and photographed, but none are formally assigned an owner, sized, or scheduled into the next sprint's capacity. What is the most likely outcome, according to the one-improvement rule?",
+    q: "Scenario: At the end of a retrospective, a team generates a list of nine potential improvements they'd like to make. All nine are written on a whiteboard and photographed, but none are formally assigned an owner, sized, or scheduled into the next sprint's capacity. What is the most likely outcome, according to the one-improvement rule?",
     a: [
       "All nine improvements will likely be implemented gradually over the coming weeks",
       "Most or all of the nine improvements will likely not survive contact with the next sprint, since none were owned, sized, or scheduled",
@@ -124,7 +128,7 @@ const quizzes = [
     b: "Reconsider — more ideas doesn't improve the odds, and a photograph of a whiteboard isn't tracking; without ownership, sizing, and a scheduled slot, this list is very unlikely to survive past discussion.",
   },
   {
-    q: "A project manager runs a small experiment: shortening the daily stand-up format to reduce time spent, with a specific measure (average stand-up duration) tracked against a baseline before the change. After two weeks, the measured duration hasn't meaningfully improved, so the team reverts to the original format without any negative consequences attached to the decision. What does this best illustrate?",
+    q: "Scenario: A project manager runs a small experiment: shortening the daily stand-up format to reduce time spent, with a specific measure (average stand-up duration) tracked against a baseline before the change. After two weeks, the measured duration hasn't meaningfully improved, so the team reverts to the original format without any negative consequences attached to the decision. What does this best illustrate?",
     a: [
       "A failed experiment that reflects poorly on the project manager's judgment",
       "PDCA working correctly — the change was checked against a measured baseline, and abandoning it without embarrassment is a legitimate outcome, not a failure",
@@ -160,11 +164,11 @@ function Modal({ d, close, done }) {
             </div>
           </>
         ) : (
-          <div className="memory-step">
+          <div className="modal-summary">
             <h3>Exam-Relevant Enablers to Remember</h3>
             <ul>
-              {d.bullets.map((x) => (
-                <li key={x}>{x}</li>
+              {d.bullets.map((b) => (
+                <li key={b}>{b}</li>
               ))}
             </ul>
           </div>
@@ -246,22 +250,14 @@ function App() {
     if (s === 2 && stageRead.every(Boolean)) mark(2);
   }, [stageRead, s]);
 
-  useEffect(() => {
-    if (s === 4 && engineRead.every(Boolean)) {
-      // both engines read
-    }
-  }, [engineRead, s]);
-
   let c;
 
   if (s === 0)
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">LESSON 6.5.2 · CONTINUOUS IMPROVEMENT PROCESSES</p>
-          <h1>
-            January resolutions fade; small habits <span>stick.</span>
-          </h1>
+          <p className="eyebrow">SCREEN 1 — HOOK</p>
+          <h1>Lesson 6.5.2 — Help Ensure Continuous Improvement Processes Are Updated</h1>
           <p className="lead">
             Every January, people write down a list of ten resolutions. By February, none of them stick. But the person who picks just one resolution — small, specific, and scheduled — is usually still doing it in June.
           </p>
@@ -270,11 +266,11 @@ function App() {
             disabled={done[0]}
             onClick={() => !done[0] && setModal("hook")}
           >
-            {done[0] ? "Improvement machinery reviewed" : "Reveal the improvement machinery"}{" "}
+            {done[0] ? "Improvement machinery reviewed" : "Click to Reveal: The Improvement Machinery"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
-        <img className="lesson-art" src={img("hook-resolutions")} alt="" />
+        <img className="lesson-art" src={img("hook-resolutions")} alt="New Year resolutions vs single habit" />
       </div>
     );
 
@@ -282,35 +278,35 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">ADAPTIVE CADENCE</p>
+          <p className="eyebrow">SCREEN 2 — THE RETROSPECTIVE: IMPROVEMENT'S HEARTBEAT</p>
           <h2>The Retrospective: Improvement's Heartbeat</h2>
           <p className="lead">
-            On adaptive tracks, one institution makes improvement inevitable rather than aspirational. It is held at every cadence boundary to inspect team processes, not the product.
+            On adaptive tracks, one institution makes improvement inevitable rather than aspirational.
           </p>
           <button
             className="primary-cta"
             disabled={done[1]}
             onClick={() => !done[1] && setModal("retro")}
           >
-            {done[1] ? "Retrospective heartbeat reviewed" : "Reveal retrospective heartbeat"}{" "}
+            {done[1] ? "Retrospective heartbeat reviewed" : "Click to Reveal: Retrospective Heartbeat"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
-        <img className="lesson-art" src={img("retrospective-heartbeat")} alt="" />
+        <img className="lesson-art" src={img("retrospective-heartbeat")} alt="Retrospective rhythm" />
       </div>
     );
 
   if (s === 2)
     c = (
       <div className="wide-page">
-        <h2>The Five-Stage Retrospective Framework</h2>
+        <p className="eyebrow">SCREEN 3 — THE FIVE-STAGE STRUCTURE</p>
+        <h2>The Five-Stage Structure</h2>
         <p className="lead">
-          A retrospective isn't just "let's talk about how it went." A structured five-stage framework keeps the conversation honest, evidence-based, and actionable. Click each stage to explore.
+          A retrospective isn't just "let's talk about how it went." A five-stage structure keeps it honest. Click each to explore.
         </p>
         <div className="card-grid five">
           {stages.map((x, i) => {
-            const icons = [ShieldCheck, BarChart2, Lightbulb, CheckCircle2, CalendarCheck];
-            const Icon = icons[i];
+            const Icon = x.icon;
             const isRead = stageRead[i];
             return (
               <button
@@ -318,17 +314,17 @@ function App() {
                 onClick={() => {
                   setStageRead((r) => r.map((v, j) => (j === i ? true : v)));
                   setModal({
-                    title: x[0],
-                    text: x[1],
-                    image: x[2],
+                    title: x.title,
+                    text: x.text,
+                    image: x.image,
                   });
                 }}
-                key={x[0]}
+                key={x.title}
               >
                 <span className="card-icon">
                   <Icon size={28} />
                 </span>
-                <strong>{x[0]}</strong>
+                <strong>{x.title}</strong>
                 {isRead ? (
                   <Check className="card-arrow check" size={20} />
                 ) : (
@@ -345,17 +341,17 @@ function App() {
     c = (
       <div className="hero-layout">
         <div>
-          <p className="eyebrow">DISCIPLINE & BACKLOG</p>
-          <h2>The One-Improvement Rule</h2>
+          <p className="eyebrow">SCREEN 4 — THE ONE-IMPROVEMENT RULE AND THE IMPROVEMENT BACKLOG</p>
+          <h2>The One-Improvement Rule and the Improvement Backlog</h2>
           <p className="lead">
-            A list of nine intentions survives contact with Monday for about an hour; one owned, scheduled item ships. Improvements then queue in an improvement backlog — because improvement unmanaged is improvement abandoned.
+            Back to that resolutions list one more time — because this is exactly the discipline that separates a team that retrospects from a team that actually improves.
           </p>
           <button
             className="primary-cta"
             disabled={done[3]}
             onClick={() => setModal("rule")}
           >
-            {done[3] ? "Rule reviewed — ready for check" : "Reveal the one-improvement rule"}{" "}
+            {done[3] ? "Rule reviewed — ready for check" : "Click to Reveal: The One-Improvement Rule"}{" "}
             <ArrowRight size={18} />
           </button>
           {done[3] && (
@@ -364,25 +360,25 @@ function App() {
               style={{ marginTop: 14 }}
               onClick={() => setQuiz(0)}
             >
-              <Target size={18} /> Start knowledge check <ArrowRight size={18} />
+              <Target size={18} /> Micro Knowledge Check <ArrowRight size={18} />
             </button>
           )}
         </div>
-        <img className="lesson-art" src={img("one-improvement-backlog")} alt="" />
+        <img className="lesson-art" src={img("one-improvement-backlog")} alt="One improvement backlog" />
       </div>
     );
 
   if (s === 4)
     c = (
       <div className="wide-page">
-        <h2>Predictive Engines: Audits, PDCA & The Meta-Level</h2>
+        <p className="eyebrow">SCREEN 5 — PREDICTIVE-SIDE ENGINES: PROCESS AUDITS AND PDCA</p>
+        <h2>Predictive-Side Engines: Process Audits and PDCA</h2>
         <p className="lead">
-          Outside sprint cadences, the same continuous improvement muscle exists in different clothes. Click each engine to explore.
+          Outside sprint cadences, the same muscle exists in different clothes. Click each engine to explore.
         </p>
         <div className="card-grid two">
           {engines.map((x, i) => {
-            const icons = [Search, RefreshCw];
-            const Icon = icons[i];
+            const Icon = x.icon;
             const isRead = engineRead[i];
             return (
               <button
@@ -390,17 +386,17 @@ function App() {
                 onClick={() => {
                   setEngineRead((r) => r.map((v, j) => (j === i ? true : v)));
                   setModal({
-                    title: x[0],
-                    text: x[1],
-                    image: x[2],
+                    title: x.title,
+                    text: x.text,
+                    image: x.image,
                   });
                 }}
-                key={x[0]}
+                key={x.title}
               >
                 <span className="card-icon">
                   <Icon size={28} />
                 </span>
-                <strong>{x[0]}</strong>
+                <strong>{x.title}</strong>
                 {isRead ? (
                   <Check className="card-arrow check" size={20} />
                 ) : (
@@ -413,7 +409,7 @@ function App() {
         {engineRead.every(Boolean) && (
           <>
             <div className="callout">
-              <strong>The Meta-Level of Enabler 6.2:</strong> Help ensure improvement processes are updated. It isn't just about running retrospectives and audits — it's making sure the improvement machinery itself gets improved over time, rather than calcifying into its own stale ritual.
+              <strong>The Meta-Level:</strong> Enabler 6.2's wording adds one more layer: help ensure improvement processes are updated. It isn't just about running retrospectives and audits — it's making sure the improvement machinery itself gets improved over time, rather than calcifying into its own stale ritual.
             </div>
             <button
               className="knowledge-cta centered"
@@ -422,11 +418,11 @@ function App() {
             >
               {done[4] ? (
                 <>
-                  <Check size={18} /> Knowledge check completed
+                  <Check size={18} /> Micro Knowledge Check completed
                 </>
               ) : (
                 <>
-                  <Target size={18} /> Start knowledge check <ArrowRight size={18} />
+                  <Target size={18} /> Micro Knowledge Check <ArrowRight size={18} />
                 </>
               )}
             </button>
@@ -438,23 +434,23 @@ function App() {
   if (s === 5)
     c = (
       <div className="exam-layout">
-        <div className="exam-visual">
-          <img src={img("exam-continuous-improvement")} alt="" />
-        </div>
-        <div>
-          <p className="eyebrow">SYNTHESIS (EXAM LENS)</p>
-          <h2>Building the Machinery That Makes Improvement Inevitable</h2>
-          <p className="lead">
-            Back to that resolutions list one final time — because the discipline was never about wanting to improve. It was about building the machinery that makes improvement actually happen.
-          </p>
-          <button
-            className="primary-cta"
-            disabled={done[5]}
-            onClick={() => !done[5] && setModal("exam")}
-          >
-            {done[5] ? "Exam lens reviewed" : "Reveal the exam lens"}{" "}
-            <ArrowRight size={18} />
-          </button>
+        <p className="eyebrow">SCREEN 6 — SYNTHESIS (EXAM LENS)</p>
+        <h2>Synthesis (Exam Lens)</h2>
+        <div className="exam-two-col">
+          <div>
+            <p className="lead">
+              Back to that resolutions list one final time — because the discipline was never about wanting to improve. It was about building the machinery that makes improvement actually happen.
+            </p>
+            <button
+              className="primary-cta"
+              disabled={done[5]}
+              onClick={() => setModal("exam")}
+            >
+              {done[5] ? "Exam review complete" : "Click to Reveal: Exam-Relevant Enablers"}{" "}
+              <ArrowRight size={18} />
+            </button>
+          </div>
+          <img className="lesson-art" src={img("exam-continuous-improvement")} alt="Synthesis PDCA" />
         </div>
       </div>
     );
@@ -462,11 +458,11 @@ function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <button className="course-select">
-          <Award size={18} />
-          <span>PMP Project Management Professional</span>
-          <ChevronDown size={14} />
-        </button>
+        <div className="course-select">
+          <span className="crumb">Module 6</span>
+          <span className="crumb-sep">/</span>
+          <span className="crumb-current">Lesson 6.5.2 — Help Ensure Continuous Improvement Processes Are Updated</span>
+        </div>
         <div className="module-progress">
           <div>
             {Array.from({ length: 10 }, (_, i) => (
