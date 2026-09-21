@@ -423,22 +423,22 @@ function App() {
   if (s === 5)
     c = (
       <div className="exam-layout">
-        <h2>Synthesis (Exam Lens)</h2>
-        <div className="exam-two-col">
-          <div>
-            <p className="lead">
-              Back to that resolutions list one final time — because the discipline was never about wanting to improve. It was about building the machinery that makes improvement actually happen.
-            </p>
-            <button
-              className="primary-cta"
-              disabled={done[5]}
-              onClick={() => setModal("exam")}
-            >
-              {done[5] ? "Exam review complete" : "Click to Reveal: Exam-Relevant Enablers"}{" "}
-              <ArrowRight size={18} />
-            </button>
-          </div>
-          <img className="lesson-art" src={img("exam-continuous-improvement")} alt="Synthesis PDCA" />
+        <div className="exam-visual">
+          <img src={img("exam-continuous-improvement")} alt="Synthesis PDCA" />
+        </div>
+        <div>
+          <h2>Synthesis (Exam Lens)</h2>
+          <p className="lead">
+            Back to that resolutions list one final time — because the discipline was never about wanting to improve. It was about building the machinery that makes improvement actually happen.
+          </p>
+          <button
+            className="primary-cta"
+            disabled={done[5]}
+            onClick={() => setModal("exam")}
+          >
+            {done[5] ? "Exam review complete" : "Click to Reveal: Exam-Relevant Enablers"}{" "}
+            <ArrowRight size={18} />
+          </button>
         </div>
       </div>
     );
