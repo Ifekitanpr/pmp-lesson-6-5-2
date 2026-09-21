@@ -221,7 +221,7 @@ function Quiz({ d, finish }) {
               {p === d.c ? d.g : d.b}
             </p>
             <button className="finish-check" onClick={finish}>
-              Finish check & unlock next screen <ArrowRight size={18} />
+              Finish check <ArrowRight size={18} />
             </button>
           </>
         )}
@@ -267,7 +267,7 @@ function App() {
             disabled={done[0]}
             onClick={() => !done[0] && setModal("hook")}
           >
-            {done[0] ? "Improvement machinery reviewed" : "Click to Reveal: The Improvement Machinery"}{" "}
+            {done[0] ? "Improvement machinery reviewed" : "Reveal improvement machinery"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
@@ -288,7 +288,7 @@ function App() {
             disabled={done[1]}
             onClick={() => !done[1] && setModal("retro")}
           >
-            {done[1] ? "Retrospective heartbeat reviewed" : "Click to Reveal: Retrospective Heartbeat"}{" "}
+            {done[1] ? "Retrospective heartbeat reviewed" : "Reveal retrospective heartbeat"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
@@ -348,7 +348,7 @@ function App() {
             className="primary-cta"
             onClick={() => setModal("rule")}
           >
-            {ruleReviewed ? "Rule reviewed" : "Click to Reveal: The One-Improvement Rule"}{" "}
+            {ruleReviewed ? "Rule reviewed" : "Reveal one-improvement rule"}{" "}
             <ArrowRight size={18} />
           </button>
           {ruleReviewed && (
@@ -357,7 +357,7 @@ function App() {
               style={{ marginTop: 14 }}
               onClick={() => setQuiz(0)}
             >
-              <Target size={18} /> {done[3] ? "Retake Micro Knowledge Check" : "Start Micro Knowledge Check (Required to Continue)"}{" "}
+              <Target size={18} /> {done[3] ? "Retake knowledge check" : "Start knowledge check"}{" "}
               <ArrowRight size={18} />
             </button>
           )}
@@ -412,7 +412,7 @@ function App() {
               className="knowledge-cta centered"
               onClick={() => setQuiz(1)}
             >
-              <Target size={18} /> {done[4] ? "Retake Micro Knowledge Check" : "Start Micro Knowledge Check (Required to Continue)"}{" "}
+              <Target size={18} /> {done[4] ? "Retake knowledge check" : "Start knowledge check"}{" "}
               <ArrowRight size={18} />
             </button>
           </>
@@ -436,7 +436,7 @@ function App() {
             disabled={done[5]}
             onClick={() => setModal("exam")}
           >
-            {done[5] ? "Exam review complete" : "Click to Reveal: Exam-Relevant Enablers"}{" "}
+            {done[5] ? "Exam review complete" : "Reveal exam enablers"}{" "}
             <ArrowRight size={18} />
           </button>
         </div>
